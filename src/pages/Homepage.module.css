@@ -1,0 +1,19 @@
+.landingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding-top: 80px;
+}
+
+.landingContainer img {
+  width: 65%;
+}
+
+.landingContainer div {
+  display: flex;
+  gap: 3rem;
+
+  padding-top: 50px;
+  font-size: 3rem;
+}
