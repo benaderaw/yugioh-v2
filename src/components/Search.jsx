@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "./Search.module.css";
+import { CardsContext, useCards } from "../context/cardsContext";
 
 // GET ALL CARDS
 // https://db.ygoprodeck.com/api/v7/cardinfo.php
@@ -8,43 +9,13 @@ import styles from "./Search.module.css";
 // https://db.ygoprodeck.com/api/v7/cardinfo.php?name=Dark Magician
 
 export default function Search() {
+  // const con = useCards();
+  // console.log(con);
+
+  const { setSearchWord, cards } = useContext(CardsContext);
+
   // state
   const [query, setQuery] = useState("");
-  const [searchWord, setSearchWord] = useState("");
-  const [cards, setCards] = useState([]);
-
-  // on load get all cards and store them locally
-  useEffect(() => {
-    async function fetchCards() {
-      try {
-        // check if search word has been submitted
-        if (searchWord === "") return;
-
-        // fetch api
-        const res = await fetch(
-          `https://db.ygoprodeck.com/api/v7/cardinfo.php?fname=${searchWord}`
-        );
-
-        // check res
-        if (!res.ok) throw new Error("Failed to fetch api");
-
-        // get data
-        const { data } = await res.json();
-
-        // store data to local storage
-        localStorage.setItem("cards", JSON.stringify(data));
-
-        // set cards state
-        setCards(JSON.parse(localStorage.getItem("cards")));
-      } catch (error) {
-        console.error(error);
-      }
-    }
-
-    fetchCards();
-  }, [setCards, searchWord]);
-
-  console.log(cards);
 
   // onChange - handle search input
   function handleInput(e) {
@@ -58,6 +29,8 @@ export default function Search() {
     setSearchWord(query.trim());
     setQuery("");
   }
+
+  console.log(cards);
 
   return (
     <div>
