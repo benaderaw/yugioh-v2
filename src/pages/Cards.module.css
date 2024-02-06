@@ -1,0 +1,22 @@
+.cardsContainer {
+  width: 75%;
+  /* background-color: red; */
+  margin: 0 auto;
+}
+
+.cardsContainer p {
+  font-size: 1.1rem;
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+
+  display: flex;
+  justify-content: center;
+}
+
+.cardsGrid {
+  margin-top: 5rem;
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem 2.7rem;
+}

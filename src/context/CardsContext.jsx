@@ -6,7 +6,7 @@ const CardsContext = createContext();
 
 function CardProvider({ children }) {
   // state
-  const [searchWord, setSearchWord] = useState("");
+  const [searchWord, setSearchWord] = useState("fun");
   const [cards, setCards] = useState([]);
 
   // on load get all cards and store them locally

@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import styles from "./Search.module.css";
 import { CardsContext, useCards } from "../context/cardsContext";
+import { useNavigate } from "react-router-dom";
 
 // GET ALL CARDS
 // https://db.ygoprodeck.com/api/v7/cardinfo.php
@@ -9,10 +10,9 @@ import { CardsContext, useCards } from "../context/cardsContext";
 // https://db.ygoprodeck.com/api/v7/cardinfo.php?name=Dark Magician
 
 export default function Search() {
-  // const con = useCards();
-  // console.log(con);
+  const navigate = useNavigate();
 
-  const { setSearchWord, cards } = useContext(CardsContext);
+  const { searchWord, setSearchWord, cards } = useContext(CardsContext);
 
   // state
   const [query, setQuery] = useState("");
@@ -26,8 +26,12 @@ export default function Search() {
   function handleSearchSubmit(e) {
     e.preventDefault();
 
+    if (query === "") return;
+
     setSearchWord(query.trim());
     setQuery("");
+
+    navigate("/cards");
   }
 
   console.log(cards);
