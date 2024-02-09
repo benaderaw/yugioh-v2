@@ -3,11 +3,13 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 import { API_URL } from "../config";
 
 const CardsContext = createContext();
+const initialData = JSON.parse(localStorage.getItem("cards"));
 
 function CardProvider({ children }) {
   // state
-  const [searchWord, setSearchWord] = useState("fun");
-  const [cards, setCards] = useState([]);
+  const [searchWord, setSearchWord] = useState("");
+  const [cards, setCards] = useState(initialData ? initialData : []);
+  const [selectedCard, setSelectedCard] = useState([]);
 
   // on load get all cards and store them locally
   useEffect(() => {
@@ -43,6 +45,8 @@ function CardProvider({ children }) {
     setSearchWord,
     cards,
     setCards,
+    selectedCard,
+    setSelectedCard,
   };
 
   return (

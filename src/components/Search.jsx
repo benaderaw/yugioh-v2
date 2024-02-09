@@ -34,8 +34,6 @@ export default function Search() {
     navigate("/cards");
   }
 
-  console.log(cards);
-
   return (
     <div>
       <form onSubmit={handleSearchSubmit}>
