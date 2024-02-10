@@ -1,92 +1,150 @@
-import React, { useCallback } from "react";
-import PageNav from "../components/PageNav";
+import React from "react";
 import { useCards } from "../context/cardsContext";
-import styles from "./CardDetail.module.css";
-import { useParams } from "react-router-dom";
+import DetailsDisplay from "../components/DetailsDisplay";
 
 export default function CardDetail() {
-  const { cards, selectedCard } = useCards();
-  const { id } = useParams();
+  // const { cards, collection, setCollection } = useCards();
+  // const { id } = useParams();
 
-  //   if (selectedCard.length === 0) {
-  //     return (
-  //       <div>
-  //         <PageNav />
+  // const selected = cards.filter((card) => {
+  //   return card.id === Number(id);
+  // })[0];
+
+  // // onClick - add to collection
+  // function handleAddToCollection() {
+  //   setCollection([...collection, selected]);
+  // }
+
+  // // onClick - remove from collection
+  // function handleRemoveFromCollection() {
+  //   const newCollection = collection.filter((card) => {
+  //     return card.id !== selected.id;
+  //   });
+
+  //   setCollection(newCollection);
+  // }
+
+  // // store collection to localStorage
+  // localStorage.setItem("collection", JSON.stringify(collection));
+
+  // // helper function - check if selected card is in collections already
+  // function isInCollection() {
+  //   return collection.some((card) => card.id === selected.id);
+  // }
+
+  // console.log(selected);
+
+  // return (
+  //   <div>
+  //     <PageNav />
+
+  //     <section className={styles.detailContainer}>
+  //       <div className={styles.path}>
+  //         <span>Home / </span>
+  //         <span> Cards / </span>
+  //         <span> {selected?.name}</span>
   //       </div>
-  //     );
-  //   }
 
-  console.log(cards);
+  //       <div className={styles.detailsBox}>
+  //         <div>
+  //           <img
+  //             src={selected?.card_images.at(0).image_url}
+  //             alt={selected?.name}
+  //           />
 
-  const cardSelected = cards.filter((card) => {
-    return card.id === Number(id);
-  });
+  //           {isInCollection() ? (
+  //             <Button
+  //               onClick={handleRemoveFromCollection}
+  //               style={styles.removeBtn}
+  //             >
+  //               Remove From Collection
+  //             </Button>
+  //           ) : (
+  //             <Button onClick={handleAddToCollection} style={styles.addBtn}>
+  //               Add to Collection
+  //             </Button>
+  //           )}
+  //         </div>
 
-  const selected = cardSelected.at(0);
+  //         <div className={styles.ccc}>
+  //           <h1>{selected?.name}</h1>
 
-  console.log(selected);
+  //           <div className={styles.detailInfo}>
+  //             {selected?.type && (
+  //               <Details
+  //                 detailType={"Type"}
+  //                 detail={selected?.type}
+  //                 style={styles.detail}
+  //               />
+  //             )}
 
-  return (
-    <div>
-      <PageNav />
+  //             {selected?.attribute && (
+  //               <Details
+  //                 detailType={"Attribute"}
+  //                 detail={selected?.attribute}
+  //                 style={styles.detail}
+  //               />
+  //             )}
 
-      <section className={styles.detailContainer}>
-        <div className={styles.path}>
-          <span>Home / </span>
-          <span> Cards / </span>
-          <span> {selected?.name}</span>
-        </div>
+  //             {selected?.race && (
+  //               <Details
+  //                 detailType={"Race"}
+  //                 detail={selected?.race}
+  //                 style={styles.detail}
+  //               />
+  //             )}
 
-        <div className={styles.detailsBox}>
-          <div>
-            <img
-              src={selected?.card_images.at(0).image_url}
-              alt={selected?.name}
-            />
-          </div>
+  //             {selected?.level && (
+  //               <Details
+  //                 detailType={"Level"}
+  //                 detail={selected?.level}
+  //                 style={styles.detail}
+  //               />
+  //             )}
 
-          <div className={styles.ccc}>
-            <h1>{selected?.name}</h1>
+  //             {selected?.atk && (
+  //               <Details
+  //                 detailType={"Attack"}
+  //                 detail={selected?.atk}
+  //                 style={styles.detail}
+  //               />
+  //             )}
 
-            <div className={styles.detailInfo}>
-              <div className={styles.detail}>
-                <div>Type</div>
-                <div>{selected?.type} </div>
-              </div>
+  //             {selected?.def && (
+  //               <Details
+  //                 detailType={"Defense"}
+  //                 detail={selected?.def}
+  //                 style={styles.detail}
+  //               />
+  //             )}
 
-              <div className={styles.detail}>
-                <div>Attribute</div>
-                <div>{selected?.attribute} </div>
-              </div>
+  //             {selected?.attribute && (
+  //               <Details
+  //                 detailType={"Attribute"}
+  //                 detail={selected?.attribute}
+  //                 style={styles.detail}
+  //               />
+  //             )}
 
-              <div className={styles.detail}>
-                <div>Race</div>
-                <div>{selected?.race} </div>
-              </div>
+  //             {selected?.archetype && (
+  //               <Details
+  //                 detailType={"Archetype"}
+  //                 detail={selected?.archetype}
+  //                 style={styles.detail}
+  //               />
+  //             )}
+  //           </div>
 
-              <div className={styles.detail}>
-                <div>Level</div>
-                <div>{selected?.level} </div>
-              </div>
+  //           <div className={styles.cardText}>
+  //             <h2>Card Text</h2>
+  //             <p>{selected?.desc}</p>
+  //           </div>
+  //         </div>
+  //       </div>
+  //     </section>
+  //   </div>
+  // );
+  const { cards } = useCards();
 
-              <div className={styles.detail}>
-                <div>Attack</div>
-                <div>{selected?.atk} </div>
-              </div>
-
-              <div className={styles.detail}>
-                <div>Defense</div>
-                <div>{selected?.def} </div>
-              </div>
-            </div>
-
-            <div className={styles.cardText}>
-              <h2>Card Text</h2>
-              <p>{selected?.desc}</p>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-  );
+  return <DetailsDisplay array={cards} />;
 }

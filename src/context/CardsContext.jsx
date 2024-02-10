@@ -4,17 +4,23 @@ import { API_URL } from "../config";
 
 const CardsContext = createContext();
 const initialData = JSON.parse(localStorage.getItem("cards"));
+const initialCollectionData = JSON.parse(localStorage.getItem("collection"));
 
 function CardProvider({ children }) {
   // state
   const [searchWord, setSearchWord] = useState("");
   const [cards, setCards] = useState(initialData ? initialData : []);
   const [selectedCard, setSelectedCard] = useState([]);
+  const [collection, setCollection] = useState(
+    initialCollectionData ? initialCollectionData : []
+  );
+  const [loading, setLoading] = useState(false);
 
   // on load get all cards and store them locally
   useEffect(() => {
     async function fetchCards() {
       try {
+        setLoading(true);
         // check if search word has been submitted
         if (searchWord === "") return;
 
@@ -32,13 +38,15 @@ function CardProvider({ children }) {
 
         // set cards state
         setCards(JSON.parse(localStorage.getItem("cards")));
+
+        setLoading(false);
       } catch (error) {
         console.error(error);
       }
     }
 
     fetchCards();
-  }, [setCards, searchWord]);
+  }, [setCards, searchWord, setLoading]);
 
   const values = {
     searchWord,
@@ -47,6 +55,9 @@ function CardProvider({ children }) {
     setCards,
     selectedCard,
     setSelectedCard,
+    collection,
+    setCollection,
+    loading,
   };
 
   return (

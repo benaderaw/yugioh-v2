@@ -3,13 +3,16 @@ import PageNav from "../components/PageNav";
 import { useCards } from "../context/cardsContext";
 import Card from "../components/Card";
 import styles from "./Cards.module.css";
+import Loading from "../components/Loading";
 
 export default function Cards() {
-  const { cards, searchWord } = useCards();
+  const { cards, searchWord, loading } = useCards();
   console.log(cards);
 
+  if (loading) return <Loading />;
+
   return (
-    <>
+    <div>
       <PageNav />
 
       <section className={styles.cardsContainer}>
@@ -26,6 +29,6 @@ export default function Cards() {
           ))}
         </div>
       </section>
-    </>
+    </div>
   );
 }

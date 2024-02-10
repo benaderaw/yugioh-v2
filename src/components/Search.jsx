@@ -39,6 +39,7 @@ export default function Search() {
       <form onSubmit={handleSearchSubmit}>
         <input
           type="text"
+          placeholder="Search a word"
           className={styles.input}
           value={query}
           onChange={handleInput}

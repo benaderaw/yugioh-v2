@@ -7,7 +7,7 @@ export default function NavLinks() {
     <div className="navLinks">
       <ul>
         <li>
-          <NavLink to="collection">Collection</NavLink>
+          <NavLink to="/collection">Collection</NavLink>
         </li>
       </ul>
     </div>

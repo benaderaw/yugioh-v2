@@ -1,0 +1,18 @@
+.collectionContainer {
+  width: 75%;
+  /* background-color: red; */
+  margin: 0 auto;
+}
+
+.collectionContainer h1 {
+  color: black;
+  font-size: 2.5rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.collectionGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem 2.7rem;
+}

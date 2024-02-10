@@ -16,6 +16,26 @@
 .detailContainer img {
   width: 100%;
   border-radius: 10px;
+  margin-bottom: 0.5rem;
+}
+
+.addBtn,
+.removeBtn {
+  width: 100%;
+  padding: 1rem;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  background-color: rgb(104, 255, 104);
+  cursor: pointer;
+}
+
+.removeBtn {
+  background-color: rgb(104, 255, 104);
+}
+
+.removeBtn {
+  background-color: rgb(255, 104, 104);
 }
 
 .detailInfo {
@@ -32,6 +52,12 @@
 .detail {
   background-color: beige;
   padding: 1rem;
+}
+
+.detail p {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
 }
 
 .ccc {
