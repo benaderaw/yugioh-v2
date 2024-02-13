@@ -5,10 +5,11 @@ import { useCards } from "../context/cardsContext";
 import { Link } from "react-router-dom";
 
 export default function Card({ card }) {
-  const { selectedCard, setSelectedCard } = useCards();
+  const { dispatch } = useCards();
 
   function handleCardSelect(e, card) {
-    setSelectedCard(card.id);
+    dispatch({ type: "setSelectedCard", payload: card.id });
+    // setSelectedCard(card.id);
   }
 
   return (

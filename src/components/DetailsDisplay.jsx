@@ -3,13 +3,14 @@ import React from "react";
 import PageNav from "./PageNav";
 import { useCards } from "../context/cardsContext";
 import styles from "./DetailsDisplay.module.css";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Button from "./Button";
 import Details from "./Details";
 
 export default function DetailsDisplay({ array }) {
-  const { collection, setCollection } = useCards();
+  const { collection, dispatch } = useCards();
   const { id } = useParams();
+  // const navigate = useNavigate();
 
   const selected = array.filter((card) => {
     return card.id === Number(id);
@@ -17,7 +18,11 @@ export default function DetailsDisplay({ array }) {
 
   // onClick - add to collection
   function handleAddToCollection() {
-    setCollection([...collection, selected]);
+    dispatch({
+      type: "addCardToCollection",
+      payload: [...collection, selected],
+    });
+    // setCollection([...collection, selected]);
   }
 
   // onClick - remove from collection
@@ -26,8 +31,11 @@ export default function DetailsDisplay({ array }) {
       return card.id !== selected.id;
     });
 
-    setCollection(newCollection);
+    dispatch({ type: "removeCardFromCollection", payload: newCollection });
+    // setCollection(newCollection);
   }
+
+  console.log(666666);
 
   // store collection to localStorage
   localStorage.setItem("collection", JSON.stringify(collection));

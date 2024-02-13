@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 export default function Search() {
   const navigate = useNavigate();
 
-  const { searchWord, setSearchWord, cards } = useContext(CardsContext);
+  const { dispatch } = useCards();
 
   // state
   const [query, setQuery] = useState("");
@@ -28,7 +28,8 @@ export default function Search() {
 
     if (query === "") return;
 
-    setSearchWord(query.trim());
+    dispatch({ type: "searchWord", payload: query.trim() });
+    // setSearchWord(query.trim());
     setQuery("");
 
     navigate("/cards");
